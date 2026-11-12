@@ -16,4 +16,12 @@ import { unitTraits } from '@civ-clone/core-unit/Rules/UnitTraits';
 ruleRegistry.register(...unitTraits('civ2-unit:unit/trait', Pikemen, new DefenceBonusVsMounted(1.5)));
 ```
 
+A rule that needs its parameters reads the traits themselves: `unit.traits(DefenceBonusVsMounted)` for a unit, or
+`traitsOf(UnitClass, DefenceBonusVsMounted, ruleRegistry)` (from `@civ-clone/core-unit/traits`) for a class. A type may be declared
+with more than one:
+
+```ts
+unit.traits(DefenceBonusVsMounted).map((trait: DefenceBonusVsMounted): number => trait.multiplier);
+```
+
 Part of the unit traits design (civ-clone/web-renderer#1008).
